@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Payslip Month</title>
+</head>
+<body>
+    <form method = 'POST'>
+        {% csrf_token %}
+        {{employeeform.as_p}}
+        <input type="submit">
+    </form>
+    <br>
+            <h1 class="p-1 mb-2 blue-gradient  text-black">Employee List :-</h1>
+            <br>
+            {% for employee in employees %}
+                <li>
+                    <a href="{% url 'payroll:update_employee_detail' employee.id %}" class="btn btn-primary">{{ employee.employee_name }}</a>
+                    &nbsp;&nbsp;
+                    <a href="{% url 'payroll:delete_employee' employee.id %}" class="btn btn-primary">Delete</a>
+                    &nbsp;&nbsp;
+                    <a href="{% url 'payroll:view_slip' employee.id %}" class="btn btn-primary">View Slip</a>
+                    &nbsp;&nbsp;
+                </li>
+            {% endfor %}
+</body>
+</html>
